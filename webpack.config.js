@@ -7,11 +7,22 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "publicBuild")
   },
+  
   // load an HTML template
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "public", "index.html"),
       favicon: path.resolve(__dirname, 'public', 'favicon.png'),
     })
-  ]
+  ],
+  // work with modern JS and React
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: ["babel-loader"]
+      }
+    ]
+  },
 };
