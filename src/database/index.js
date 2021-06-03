@@ -8,6 +8,7 @@ const db = require('./db.js');
 // This is a mock db call that waits for # milliseconds and returns
 const mockDBCall = (dataAccessMethod) => {
   return new Promise((resolve, reject) => {
+    console.log('resolve', resolve)
     setTimeout(() => {
       resolve(dataAccessMethod());
     }, 500);
@@ -37,6 +38,7 @@ const getListOfAgesOfUsersWith = (item) => {
         console.log(name, 'has the item')
         const userAge = userArray.find(user => user.username === name).age
         console.log(name, 'is of age', userAge)
+        
         if (result.hasOwnProperty(userAge)) {
           result[userAge] += 1
         } else {
@@ -47,6 +49,7 @@ const getListOfAgesOfUsersWith = (item) => {
     })
     console.log('result', result)
     return result
+    // throw new Error('error')
   }
   return mockDBCall(dataAccessMethod);
 }
