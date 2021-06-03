@@ -9,6 +9,8 @@ const port = process.env.PORT || 3000;
 // serve static files
 app.use(express.static('publicBuild'));
 
+// parse request
+app.use(express.json())
 // register routes
 registerRoutes(app);
 
