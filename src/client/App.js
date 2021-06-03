@@ -1,10 +1,11 @@
 import React from 'react'
+import User from './components/Users'
 
 class App extends React.Component {
   render() {
     return (
-      <div>
-        Hello Challenger
+      <div className='app'>
+        <User />
       </div>
     );
   }
