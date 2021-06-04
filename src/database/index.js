@@ -24,29 +24,50 @@ const getUsers = () => {
 const getListOfAgesOfUsersWith = (item) => {
   const dataAccessMethod = () => {
     // fill me in :)
-
-    const result = {} // map age to count
-    
-    // userArray 
+    // map age to count
+    const ageCountObj = {} 
     const userArray = _.map(db.usersById, userInfo => userInfo)
     
     Object.keys(db.itemsOfUserByUsername).map(name => {
-      // first see who has the item
       if (db.itemsOfUserByUsername[name].includes(item)) {
         const userAge = userArray.find(user => user.username === name).age
-        if (result.hasOwnProperty(userAge)) {
-          result[userAge] += 1
+        if (ageCountObj.hasOwnProperty(userAge)) {
+          ageCountObj[userAge] += 1
         } else {
-          result[userAge] = 1
+          ageCountObj[userAge] = 1
         }
       }
     })
-    return result
+
+    const ageCountArray = []
+    Object.keys(ageCountObj).forEach(age => {
+      ageCountArray.push({
+        age: age,
+        count: ageCountObj[age]
+      })
+    })
+    console.log('ageCountObj', ageCountObj)
+    console.log('ageCountArray', ageCountArray)
+    return ageCountArray
   }
   return mockDBCall(dataAccessMethod);
 }
-
+const getItems = () => {
+  const dataAccessMethod = () => {
+    const items = []
+    Object.values(db.itemsOfUserByUsername).map(itemsOfUser => {
+      itemsOfUser.forEach(item => {
+        if (!items.includes(item)) {
+          items.push(item)
+        }
+      })
+    })
+    return items
+  }
+  return mockDBCall(dataAccessMethod);
+}
 module.exports = {
   getUsers,
-  getListOfAgesOfUsersWith
+  getListOfAgesOfUsersWith,
+  getItems
 };
