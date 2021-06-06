@@ -4,7 +4,7 @@
   "description": "coding challenge",
   "main": "./src/index.js",
   "scripts": {
-    "start": "node ./src/index.js",
+    "start": "npm run dev-client && node ./src/index.js",
     "dev-server": "nodemon ./src/index.js",
     "dev-client": "webpack --mode development --config webpack.config.js"
   },
