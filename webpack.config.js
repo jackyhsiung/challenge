@@ -5,7 +5,7 @@ module.exports = {
   //
   entry: { index: path.resolve(__dirname, "src", "client", "index.js") },
   output: {
-    path: path.resolve(__dirname, "publicBuild")
+    path: path.resolve(__dirname, "dist")
   },
   
   // load an HTML template
@@ -15,7 +15,7 @@ module.exports = {
       favicon: path.resolve(__dirname, 'public', 'favicon.png'),
     })
   ],
-  // work with modern JS and React
+  // work with modern JS, React, CSS
   module: {
     rules: [
       {

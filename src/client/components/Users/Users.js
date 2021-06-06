@@ -14,9 +14,11 @@ class User extends React.Component {
   componentDidMount() {
     axios.get('/users')
       .then(response => {
-        this.setState({
-          users: response.data
-        })
+        if (response.data instanceof Array) {
+          this.setState({
+            users: response.data
+          })
+        }
       })
   }
 

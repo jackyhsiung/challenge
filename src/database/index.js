@@ -46,8 +46,6 @@ const getListOfAgesOfUsersWith = (item) => {
         count: ageCountObj[age]
       })
     })
-    console.log('ageCountObj', ageCountObj)
-    console.log('ageCountArray', ageCountArray)
     return ageCountArray
   }
   return mockDBCall(dataAccessMethod);

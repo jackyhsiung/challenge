@@ -18,21 +18,22 @@ function AgeDemographic(props) {
       }
     })
       .then(response => {
-        console.log('response.data', response.data)
-        setAgeCount(response.data)
+        if (response.data instanceof Array) {
+          setAgeCount(response.data)
+        }
       })
   }, [curItem])
 
   useEffect(() => {
     axios.get('http://localhost:3000/items')
       .then(response => {
-        console.log('response.data', response.data)
-        setItems(response.data)
+        if (response.data instanceof Array) {
+          setItems(response.data)
+        }
       })
   }, [])
 
   const handleSelect = (event) => {
-    console.log(event)
     setCurItem(event)
   }
 
