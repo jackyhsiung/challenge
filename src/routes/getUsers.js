@@ -1,13 +1,13 @@
 'use strict';
 const mockDBCalls = require('../database/index.js');
 
-const getUsersHandler = async (request, response) => {
+const getUsersHandler = async (request, response, next) => {
   try {
     const data = await mockDBCalls.getUsers();
     return response.status(200).send(JSON.stringify(data));
   }
   catch(err) {
-    return response.status(404).send(JSON.stringify('Cannot Get Users'));
+    return next(new Error("Cannot get users"));
   }
     
 };

@@ -1,13 +1,13 @@
 'use strict';
 const mockDBCalls = require('../database/index.js');
 
-const getListOfAgesOfUsersWithHandler = async (request, response) => {
+const getListOfAgesOfUsersWithHandler = async (request, response, next) => {
     const { itemToLookup } = request.query
     try {
       const data = await mockDBCalls.getListOfAgesOfUsersWith(itemToLookup);
       return response.status(200).send(JSON.stringify(data));
     } catch(err) {
-      return response.status(404).send(JSON.stringify('Cannot Get List Of Ages Of Users'));
+      next(new Error('Cannot get list of ages of users with the item'))
     }
     
     
